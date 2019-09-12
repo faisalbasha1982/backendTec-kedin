@@ -1,0 +1,257 @@
+[
+  {
+    "_id": "5996fb74f4be229a2d6f5a11",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Alabama"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a12",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Alaska"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a13",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Arizona"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a14",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Arkansas"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a15",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "California"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a16",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Colorado"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a17",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Connecticut"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a18",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Delaware"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a19",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Florida"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a20",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Georgia"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a21",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Hawaii"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a22",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Idaho"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a23",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Illinois"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a24",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Indiana"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a25",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Iowa"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a26",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Kansas"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a27",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Kentucky"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a28",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Louisiana"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a29",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Maine"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a30",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Maryland"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a31",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Massachusetts"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a32",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Michigan"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a33",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Minnesota"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a34",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Mississippi"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a35",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Missouri"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a36",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Montana"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a37",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Nebraska"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a38",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Nevada"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a39",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "New Hampshire"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a40",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "New Jersey"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a41",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "New Mexico"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a42",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "New York"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a43",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "North Carolina"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a44",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "North Dakota"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a45",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Ohio"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a46",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Oklahoma"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a47",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Oregon"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a48",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Pennsylvania"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a49",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Rhode Island"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a50",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "South Carolina"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a51",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "South Dakota"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a52",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Tennessee"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a53",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Texas"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a54",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Utah"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a55",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Vermont"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a56",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Virginia"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a57",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Washington"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a58",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "West Virginia"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a59",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Wisconsin"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a60",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "value": "Wyoming"
+  },
+  {
+    "_id": "5996fb74f4be229a2d6f5a61",
+    "country": "5996fb74f4be229a2d6f5c99",
+    "value": "Other"
+  }
+]

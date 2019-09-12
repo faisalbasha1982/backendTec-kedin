@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "5996a3d9de3b0b927560d2e8",
+    "email": "user0@email.com",
+    "username": "username-updated",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "verificationToken": null,
+    "__v": 0,
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1OTk2YTNkOWRlM2IwYjkyNzU2MGQyZTgiLCJpYXQiOjE1MDMxMzMwOTEsImV4cCI6MTUwMzIxOTQ5MSwiYXVkIjoiQ0xJRU5UX0lEIn0.igwTeIYHPMxmiP6yBGHl4RHegaejIcKIfBxjbuLaMhs",
+    "forgotPasswordToken": null,
+    "verified": true,
+    "type": "technologyUser"
+  },
+  {
+    "_id": "5996b5bcea625e95ece98199",
+    "email": "email@email.com",
+    "username": "jiangliwu",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "verificationToken": "jK8y6A",
+    "__v": 0,
+    "verified": false,
+    "type": "technologyUser"
+  },
+  {
+    "_id": "5998d9be12ea6c1824b74304",
+    "email": "provider0@email.com",
+    "username": "provider0",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "__v": 0,
+    "verified": true,
+    "type": "technologyProvider"
+  },
+  {
+    "_id": "5998d9be12ea6c1824b74305",
+    "email": "provider1@email.com",
+    "username": "provider1",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "__v": 0,
+    "verified": true,
+    "type": "technologyProvider"
+  },
+  {
+    "_id": "5998d9be12ea6c1824b74306",
+    "email": "provider2@email.com",
+    "username": "provider2",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "__v": 0,
+    "verified": false,
+    "type": "technologyProvider"
+  },
+  {
+    "_id": "5998d9be12ea6c1824b74308",
+    "email": "admin@teckedin.com",
+    "username": "admin@teckedin",
+    "password": "e10adc3949ba59abbe56e057f20f883e",
+    "__v": 0,
+    "verified": true,
+    "type": "admin"
+  }
+]

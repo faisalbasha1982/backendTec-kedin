@@ -1,0 +1,30 @@
+[
+  {
+    "_id": "5996ff8f2e859d9aed535ac5",
+    "createdOn": "2017-08-18T14:54:07.422Z",
+    "updatedOn": "2017-08-20T03:30:52.799Z",
+    "firstName": "f",
+    "lastName": "l",
+    "city": "city2",
+    "phone": "0011-123-123",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "state": "5996fb74f4be229a2d6f5a12",
+    "userId": "5996a3d9de3b0b927560d2e8",
+    "notifyMeUpcomingEvent": true,
+    "__v": 0
+  },
+  {
+    "_id": "5998f3e65121ca1bbaeca8ab",
+    "createdOn": "2017-08-20T02:28:54.281Z",
+    "updatedOn": "2017-08-20T02:28:54.281Z",
+    "state": "5996fb74f4be229a2d6f5a12",
+    "city": "city1",
+    "firstName": "ff",
+    "lastName": "ll",
+    "phone": "0011-123-123",
+    "country": "5996fb74f4be229a2d6f5c88",
+    "userId": "5996b5bcea625e95ece98199",
+    "notifyMeUpcomingEvent": true,
+    "__v": 0
+  }
+]

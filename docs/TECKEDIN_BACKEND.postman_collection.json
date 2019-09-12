@@ -1,0 +1,5097 @@
+{
+	"variables": [],
+	"info": {
+		"name": "TECKEDIN_BACKEND",
+		"_postman_id": "af704506-5755-d64a-f396-b5c71493e74c",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user api",
+			"description": "",
+			"item": [
+				{
+					"name": "errors",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/signup 400 - input error",
+							"request": {
+								"url": "{{URL}}/signup",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"jiangliwu\",\n\t\"username\":\"jiangliwu\",\n\t\"type\":\"technologyUser\",\n\t\"password\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/signup 400 - email already exist",
+							"request": {
+								"url": "{{URL}}/signup",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"user0@email.com\",\n\t\"username\":\"jiangliwu\",\n\t\"type\":\"technologyUser\",\n\t\"password\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/login 400 - email or password error",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"accessToken\", \"Bearer \"+jsonData.accessToken);",
+											"postman.setEnvironmentVariable(\"userId\", `\"${jsonData._id}\"`);"
+										]
+									}
+								}
+							],
+							"request": {
+								"url": "{{URL}}/login",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"user@email.com\",\n\t\"password\":\"1234568\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/login 403 - user not verified",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);",
+											"postman.setEnvironmentVariable(\"accessToken\", \"Bearer \"+jsonData.accessToken);",
+											"postman.setEnvironmentVariable(\"userId\", `\"${jsonData._id}\"`);"
+										]
+									}
+								}
+							],
+							"request": {
+								"url": "{{URL}}/login",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"provider2@email.com\",\n\t\"password\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/logout 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/logout",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"password\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/users/{id} 403 - cannot update others",
+							"request": {
+								"url": "{{URL}}/users/5998d9be12ea6c1824b74304",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"username\":\"username-updated\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/users/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/users/5998d9be12ea6c1824b74999",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"username\":\"username-updated\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/users/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/users/5998d9be12ea6c1824b74999",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"password\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/changeForgotPassword 400 - forgotpassword token error",
+							"request": {
+								"url": "{{URL}}/changeForgotPassword",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"user0@email.com\",\n\t\"forgotPasswordToken\":\"MFJjzz\",\n\t\"newPassword\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/changeForgotPassword 404 - email not found",
+							"request": {
+								"url": "{{URL}}/changeForgotPassword",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"forgotPasswordToken\":\"MFJjzz\",\n\t\"newPassword\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/updatePassword 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/updatePassword",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"oldPassword\":\"123456\",\n\t\"newPassword\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/updatePassword 400 -password error",
+							"request": {
+								"url": "{{URL}}/updatePassword",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									},
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"oldPassword\":\"1234567\",\n\t\"newPassword\":\"123456\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/initiateForgotPassword 404 - email not found",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/initiateForgotPassword?email=jiangliwu.ipple@gmail.com",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"initiateForgotPassword"
+									],
+									"query": [
+										{
+											"key": "email",
+											"value": "jiangliwu.ipple@gmail.com",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/currentUser 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/currentUser",
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/signup",
+					"request": {
+						"url": "{{URL}}/signup",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"username\":\"test03\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/login - TechnologyUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", \"Bearer \"+jsonData.accessToken);",
+									"postman.setEnvironmentVariable(\"userId\", `${jsonData._id}`);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{URL}}/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"user0@email.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/login - TechnologyProvider",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"accessToken\", \"Bearer \"+jsonData.accessToken);",
+									"postman.setEnvironmentVariable(\"userId\", `${jsonData._id}`);"
+								]
+							}
+						}
+					],
+					"request": {
+						"url": "{{URL}}/login",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"provider0@email.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/logout",
+					"request": {
+						"url": "{{URL}}/logout",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/users/{id}",
+					"request": {
+						"url": "{{URL}}/users/{{userId}}",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"email-update@gmail.com\",\n\t\"username\":\"username-zz\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/users/{id}",
+					"request": {
+						"url": "{{URL}}/users/{{userId}}",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/changeForgotPassword",
+					"request": {
+						"url": "{{URL}}/changeForgotPassword",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"forgotPasswordToken\":\"r87Bza\",\n\t\"newPassword\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/updatePassword",
+					"request": {
+						"url": "{{URL}}/updatePassword",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"oldPassword\":\"123456\",\n\t\"newPassword\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/initiateForgotPassword",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/initiateForgotPassword?email=jiangliwu.ipple@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"initiateForgotPassword"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jiangliwu.ipple@gmail.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/currentUser",
+					"request": {
+						"url": "{{URL}}/currentUser",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/users",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/users?email=email",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "email",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/users",
+					"request": {
+						"url": "{{URL}}/count/users",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\":\"jiangliwu.ipple@gmail.com\",\n\t\"password\":\"123456\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "technologyUser api",
+			"description": "",
+			"item": [
+				{
+					"name": "errors",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/technologyUsers/{id} 403",
+							"request": {
+								"url": "{{URL}}/technologyUsers/5998f3e65121ca1bbaeca8ab",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers 400 - already created",
+							"request": {
+								"url": "{{URL}}/technologyUsers",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"firstName\": \"Liwu\",\n  \"lastName\": \"Jiang\",\n  \"phone\": \"0011-123-123\",\n  \"userPhotoPath\": \"http://photo.com/1/2.png\",\n  \"country\": \"5996fb74f4be229a2d6f5c88\",\n  \"userId\":{{userId}}\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers 400 - input error",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/technologyUsers?name=jiang&userId=zzzz",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"technologyUsers"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jiang",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "userId",
+											"value": "zzzz",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers 401 - auth failed.",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/technologyUsers?name=jiang&userId=zzzz",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"technologyUsers"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jiang",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "userId",
+											"value": "zzzz",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers/{id} 403 cannot update other's info",
+							"request": {
+								"url": "{{URL}}/technologyUsers/5998f3e65121ca1bbaeca8ab",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\":\"update-firstName\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac9",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\":\"update-firstName\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers/{id}/upload 401 auth failed",
+							"request": {
+								"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac5/upload",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "",
+											"type": "file",
+											"src": "xx.jpg",
+											"value": ""
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers/{id}/upload 403 - cannot update other",
+							"request": {
+								"url": "{{URL}}/technologyUsers/5998f3e65121ca1bbaeca8ab/upload",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "",
+											"type": "file",
+											"src": "xx.jpg",
+											"value": ""
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUsers/{id}/upload 404 not found",
+							"request": {
+								"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac7/upload",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "",
+											"type": "file",
+											"src": "xx.jpg",
+											"value": ""
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/technologyUsers",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/technologyUsers?name=jiang",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"technologyUsers"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "jiang",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUsers",
+					"request": {
+						"url": "{{URL}}/technologyUsers",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"firstName\": \"Liwu\",\n  \"lastName\": \"Jiang\",\n  \"phone\": \"0011-123-123\",\n  \"userPhotoPath\": \"http://photo.com/1/2.png\",\n  \"country\": \"5996fb74f4be229a2d6f5c88\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUsers/{id}",
+					"request": {
+						"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac5",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUsers/{id}",
+					"request": {
+						"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac5",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"firstName\":\"update-firstNamezz\",\n\t\"city\":\"city4\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUsers/{id}/upload",
+					"request": {
+						"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac5/upload",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "",
+									"type": "file",
+									"src": "xx.jpg",
+									"value": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUsers/{id}",
+					"request": {
+						"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac5",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/technologyUsers",
+					"request": {
+						"url": "{{URL}}/count/technologyUsers",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUsers/{id}/statistics",
+					"request": {
+						"url": "{{URL}}/technologyUsers/5996ff8f2e859d9aed535ac5/statistics",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "technologyProvider api",
+			"description": "",
+			"item": [
+				{
+					"name": "errors",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/technologyProviders/{id} 403 - cannot delete other",
+							"request": {
+								"url": "{{URL}}/technologyProviders/59970b9154b8039d813e7027",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyProviders/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/technologyProviders/59970b9154b8039d813e7028",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyProviders 400 - already created",
+							"request": {
+								"url": "{{URL}}/technologyProviders",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"provider name\",\n  \"address\": {\n    \"street\": \"street 01\",\n    \"locality\": \"2 401\",\n    \"postalCode\": \"516900\",\n    \"state\": \"USA\"\n  },\n  \"contactInformation\": {\n    \"phone\": \"110-009-110\",\n    \"email\": \"email@email.com\",\n    \"website\": \"http://www.baidu.com\"\n  },\n  \"logoPath\": \"http://logo.png\",\n  \"userId\": {{userId}}\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyProviders 400 - input error",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/technologyProviders?name=jiang&userId=zzzz",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"technologyProviders"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jiang",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "userId",
+											"value": "zzzz",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyProviders 401 - auth failed.",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/technologyProviders?name=jiang&userId=zzzz",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"technologyProviders"
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "jiang",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "userId",
+											"value": "zzzz",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyProviders/{id} 403 cannot update other's info",
+							"request": {
+								"url": "{{URL}}/technologyProviders/59970b9154b8039d813e7027",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\":\"updated name..\",\n\t\"address\": {\n        \"street\": \"street 01 , updated\"\n    },\n    \"contactInformation\": {\n        \"phone\": \"110-009-102\",\n        \"email\": \"email.updated@email.com\"\n    }\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyProviders/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/technologyProviders/59970b9154b8039d813e7027",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/technologyProviders",
+					"request": {
+						"url": "{{URL}}/technologyProviders",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyProviders",
+					"request": {
+						"url": "{{URL}}/technologyProviders",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"provider name\",\n  \"address\": {\n    \"street\": \"street 01\",\n    \"locality\": \"2 401\",\n    \"postalCode\": \"516900\",\n    \"state\": \"USA\"\n  },\n  \"contactInformation\": {\n    \"phone\": \"110-009-110\",\n    \"email\": \"email@email.com\",\n    \"website\": \"http://www.baidu.com\"\n  },\n  \"logoPath\": \"http://logo.png\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyProviders/{id}",
+					"request": {
+						"url": "{{URL}}/technologyProviders/59970b8954b8039d813e7023",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyProviders/{id}",
+					"request": {
+						"url": "{{URL}}/technologyProviders/59970b8954b8039d813e7023",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"updated name..\",\n\t\"address\": {\n        \"street\": \"street 01 , updated\"\n    },\n    \"contactInformation\": {\n        \"phone\": \"110-009-102\",\n        \"email\": \"email.updated@email.com\"\n    }\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyProviders/{id}",
+					"request": {
+						"url": "{{URL}}/technologyProviders/59970b8954b8039d813e7023",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/technologyProviders",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/count/technologyProviders?limit=0",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"count",
+								"technologyProviders"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyProviders/{id}/statistics",
+					"request": {
+						"url": "{{URL}}/technologyProviders/59970b8954b8039d813e7023/statistics",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "post api",
+			"description": "",
+			"item": [
+				{
+					"name": "errors",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/posts 401 - auth failed.",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/posts?technologyProviderId=59970b8954b8039d813e7023",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "publishedOnStart",
+											"value": "2016-10-05",
+											"equals": true,
+											"description": "",
+											"disabled": true
+										},
+										{
+											"key": "publishedOnEnd",
+											"value": "2018-10-10",
+											"equals": true,
+											"description": "",
+											"disabled": true
+										},
+										{
+											"key": "technologyProviderId",
+											"value": "59970b8954b8039d813e7023",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/posts 400 - input error",
+							"request": {
+								"url": "{{URL}}/posts",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"new title\",\n  \"createdBy\": \"59970b8954b8039d813e7023\",\n  \"category\": \"59978ee5daefc4a05b6a5522zz\",\n  \"imagePath\": \"http://www.google.com/1.png\",\n  \"content\": \"c++ ......... , java ........ . this post maybe create notification to users.\",\n  \"keywords\": [\n    \"keyword1\"\n  ]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/posts 403 - cannot use other id to create",
+							"request": {
+								"url": "{{URL}}/posts",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"new title\",\n  \"createdBy\": \"59970b9154b8039d813e7027\",\n  \"category\": \"59978ee5daefc4a05b6a5522\",\n  \"imagePath\": \"http://www.google.com/1.png\",\n  \"content\": \"c++ ......... , java ........ . this post maybe create notification to users.\",\n  \"keywords\": [\n    \"keyword1\"\n  ]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/posts/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/posts/59978ee5daefc4a05b6a5525",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/posts/{id} 403 - cannot update other's",
+							"request": {
+								"url": "{{URL}}/posts/5998f3b0087af11b9cfda0f6",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"published\",\n  \"readingTime\": 10,\n  \"publishedOn\": \"2017-01-20\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/posts/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/posts/59978ee5daefc4a05b6a5529",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"status\": \"published\",\n  \"readingTime\": 10,\n  \"publishedOn\": \"2017-01-20\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/posts/{id} 403 - cannot delete other's entity",
+							"request": {
+								"url": "{{URL}}/posts/5998f3b0087af11b9cfda0f6",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/posts",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/posts?publishedOnStart=2016-10-05&publishedOnEnd=2018-10-10&technologyProviderId=59970b8954b8039d813e7023",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "publishedOnStart",
+									"value": "2016-10-05",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "publishedOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "technologyProviderId",
+									"value": "59970b8954b8039d813e7023",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts",
+					"request": {
+						"url": "{{URL}}/posts",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"new title\",\n  \"createdBy\": \"59970b8954b8039d813e7023\",\n  \"category\": \"59978ee5daefc4a05b6a5522\",\n  \"imagePath\": \"http://www.google.com/1.png\",\n  \"content\": \"c++ ......... , java ........ . this post maybe create notification to users.\",\n  \"keywords\": [\n    \"keyword1\"\n  ]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts/{id}",
+					"request": {
+						"url": "{{URL}}/posts/59978ee5daefc4a05b6a5523",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts/{id}",
+					"request": {
+						"url": "{{URL}}/posts/59978ee5daefc4a05b6a5523",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"published\",\n  \"readingTime\": 10,\n  \"publishedOn\": \"2017-01-20\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts/{id}",
+					"request": {
+						"url": "{{URL}}/posts/59978ee5daefc4a05b6a5523",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/posts",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/count/posts?technologyProviderId=59970b8954b8039d813e7023&readingTimeLessThan=11",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"count",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "technologyProviderId",
+									"value": "59970b8954b8039d813e7023",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "readingTimeLessThan",
+									"value": "11",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts/{id}/email",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/posts/59978ee5daefc4a05b6a5523/email?email=jiangliwu.ipple@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"posts",
+								"59978ee5daefc4a05b6a5523",
+								"email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jiangliwu.ipple@gmail.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts/{id}/sub",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/posts/59978ee5daefc4a05b6a5523/email?email=jiangliwu.ipple@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"posts",
+								"59978ee5daefc4a05b6a5523",
+								"email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jiangliwu.ipple@gmail.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/posts/{id}/email copy copy",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/posts/59978ee5daefc4a05b6a5523/email?email=jiangliwu.ipple@gmail.com",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"posts",
+								"59978ee5daefc4a05b6a5523",
+								"email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "jiangliwu.ipple@gmail.com",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "subscribe api",
+			"description": "",
+			"item": [
+				{
+					"name": "errors",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/subscribe 401",
+							"request": {
+								"url": "{{URL}}/subscribes",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": "",
+										"disabled": true
+									}
+								],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/subscribe 400",
+							"request": {
+								"url": "{{URL}}/subscribes",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/subscribe 401",
+							"request": {
+								"url": "{{URL}}/subscribes",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": "",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\":\"59978ee5daefc4a05b6a5523\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/subscribe 409",
+							"request": {
+								"url": "{{URL}}/subscribes",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": "",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\":\"59978ee5daefc4a05b6a5523\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/subscribe/download 401",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/subscribes/download?provider=59970b8954b8039d813e7023",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"subscribes",
+										"download"
+									],
+									"query": [
+										{
+											"key": "provider",
+											"value": "59970b8954b8039d813e7023",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": "",
+										"disabled": true
+									}
+								],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/subscribe/download 404",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/subscribes/download?provider=59970b8954b8039d813e7056",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"subscribes",
+										"download"
+									],
+									"query": [
+										{
+											"key": "provider",
+											"value": "59970b8954b8039d813e7056",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/subscribe",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/subscribes?user=5996ff8f2e859d9aed535ac5&post=59978ee5daefc4a05b6a5523",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"subscribes"
+							],
+							"query": [
+								{
+									"key": "user",
+									"value": "5996ff8f2e859d9aed535ac5",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "post",
+									"value": "59978ee5daefc4a05b6a5523",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/subscribe/download",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/subscribes/download?provider=59970b8954b8039d813e7023",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"subscribes",
+								"download"
+							],
+							"query": [
+								{
+									"key": "provider",
+									"value": "59970b8954b8039d813e7023",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/subscribe",
+					"request": {
+						"url": "{{URL}}/subscribes",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"post\":\"59978ee5daefc4a05b6a5523\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "postView api",
+			"description": "",
+			"item": [
+				{
+					"name": "errors",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/postViews 401 - auth failed",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/postViews?createdOnStart=2016-10-05&createdOnEnd=2018-10-10&userId=5996ff8f2e859d9aed535ac5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"postViews"
+									],
+									"query": [
+										{
+											"key": "createdOnStart",
+											"value": "2016-10-05",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "createdOnEnd",
+											"value": "2018-10-10",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "userId",
+											"value": "5996ff8f2e859d9aed535ac5",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postViews 400 - input error",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/postViews?createdOnStart=2016-10-05&createdOnEnd=zzzzzz&userId=5996ff8f2e859d9aed535ac5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"postViews"
+									],
+									"query": [
+										{
+											"key": "createdOnStart",
+											"value": "2016-10-05",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "createdOnEnd",
+											"value": "zzzzzz",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "userId",
+											"value": "5996ff8f2e859d9aed535ac5",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postViews 400 - input error",
+							"request": {
+								"url": "{{URL}}/postViews",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523z\",\n  \"user\": \"5996ff8f2e859d9aed535ac5\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postViews 403 - cannot use other id to create",
+							"request": {
+								"url": "{{URL}}/postViews",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523\",\n  \"user\": \"5998f3e65121ca1bbaeca8ab\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postViews/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/postViews/5998ee419493351addfe8d89",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/postViews",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/postViews?createdOnStart=2016-10-05&createdOnEnd=2018-10-10&technologyUserId=5996ff8f2e859d9aed535ac5&postId=59978ee5daefc4a05b6a5523",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"postViews"
+							],
+							"query": [
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-05",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "technologyUserId",
+									"value": "5996ff8f2e859d9aed535ac5",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "postId",
+									"value": "59978ee5daefc4a05b6a5523",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/postViews",
+					"request": {
+						"url": "{{URL}}/postViews",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523\",\n  \"user\": \"5996ff8f2e859d9aed535ac5\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/postViews/{id}",
+					"request": {
+						"url": "{{URL}}/postViews/5998ee419493351addfe8d83",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/postViews",
+					"request": {
+						"url": "{{URL}}/count/postViews",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "postSave api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/postSaves 400 - input error",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/postSaves?createdOnStart=2016-10-05&createdOnEnd=2018-10-10&userId=5996ff8f2e859d9aed535ac5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"postSaves"
+									],
+									"query": [
+										{
+											"key": "createdOnStart",
+											"value": "2016-10-05",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "createdOnEnd",
+											"value": "2018-10-10",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "technologyProviderId",
+											"value": "59970b8954b8039d813e7023",
+											"equals": true,
+											"description": "",
+											"disabled": true
+										},
+										{
+											"key": "postId",
+											"value": "59978ee5daefc4a05b6a5523",
+											"equals": true,
+											"description": "",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "5996ff8f2e859d9aed535ac5",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves 401 - auth failed",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/postSaves?createdOnStart=2016-10-05&createdOnEnd=2018-10-10&userId=5996ff8f2e859d9aed535ac5",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"postSaves"
+									],
+									"query": [
+										{
+											"key": "createdOnStart",
+											"value": "2016-10-05",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "createdOnEnd",
+											"value": "2018-10-10",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "technologyProviderId",
+											"value": "59970b8954b8039d813e7023",
+											"equals": true,
+											"description": "",
+											"disabled": true
+										},
+										{
+											"key": "postId",
+											"value": "59978ee5daefc4a05b6a5523",
+											"equals": true,
+											"description": "",
+											"disabled": true
+										},
+										{
+											"key": "userId",
+											"value": "5996ff8f2e859d9aed535ac5",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/postSaves",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523\",\n  \"user\": \"5996ff8f2e859d9aed535ac5\",\n  \"expirationOption\":\"oneYear\",\n  \"status\":\"active\",\n  \"keywords\":[\"key1\",\"key2\"]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves 400 - input error",
+							"request": {
+								"url": "{{URL}}/postSaves",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523\",\n  \"user\": \"5996ff8f2e859d9aed535ac5z\",\n  \"expirationOption\":\"oneYear\",\n  \"status\":\"active\",\n  \"keywords\":[\"key1\",\"key2\"]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves 403 - cannot create with other's user id",
+							"request": {
+								"url": "{{URL}}/postSaves",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523\",\n  \"user\": \"5998f3e65121ca1bbaeca8ab\",\n  \"expirationOption\":\"oneYear\",\n  \"status\":\"active\",\n  \"keywords\":[\"key1\",\"key2\"]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/postSaves/5998efb2f8b15b1b2a874990",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves/{id} 403 - cannot update entity not belongs you",
+							"request": {
+								"url": "{{URL}}/postSaves/5998fb03d85c2a1ce5a1504c",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"expirationOption\":\"fiveYears\",\n  \"status\":\"active\",\n  \"keywords\":[\"key1\",\"key2\",\"key3\"]\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/postSaves/{id} 403",
+							"request": {
+								"url": "{{URL}}/postSaves/5998fb03d85c2a1ce5a1504c",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/postSaves",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/postSaves?createdOnStart=2016-10-05&createdOnEnd=2018-10-10&statuses=[\"active\"]&postIds=[\"59978ee5daefc4a05b6a5523\"]&technologyUserId=5996ff8f2e859d9aed535ac5&keywords=[\"key1\"]",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"postSaves"
+							],
+							"query": [
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-05",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "statuses",
+									"value": "[\"active\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "postIds",
+									"value": "[\"59978ee5daefc4a05b6a5523\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "technologyUserId",
+									"value": "5996ff8f2e859d9aed535ac5",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "keywords",
+									"value": "[\"key1\"]",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/postSaves",
+					"request": {
+						"url": "{{URL}}/postSaves",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"post\": \"59978ee5daefc4a05b6a5523\",\n  \"user\": \"5996ff8f2e859d9aed535ac5\",\n  \"expirationOption\":\"oneYear\",\n  \"status\":\"active\",\n  \"keywords\":[\"key1\",\"key2\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/postSaves/{id}",
+					"request": {
+						"url": "{{URL}}/postSaves/5998efb2f8b15b1b2a874990",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/postSaves/{id}",
+					"request": {
+						"url": "{{URL}}/postSaves/5998efb2f8b15b1b2a874990",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"expirationOption\":\"fiveYears\",\n  \"status\":\"active\",\n  \"keywords\":[\"key1\",\"key2\",\"key3\"]\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/postSaves/{id}",
+					"request": {
+						"url": "{{URL}}/postSaves/5998efb2f8b15b1b2a874990",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/postSaves",
+					"request": {
+						"url": "{{URL}}/count/postSaves",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "review api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/reviews 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/reviews",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/reviews 400 - input error",
+							"request": {
+								"url": "{{URL}}/reviews",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5z\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/reviews 403 - cannot use other's id",
+							"request": {
+								"url": "{{URL}}/reviews",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5998f3e65121ca1bbaeca8ab\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/reviews/{id} 403 - cannot update other's",
+							"request": {
+								"url": "{{URL}}/reviews/5997d381d49e61a964d6fbf8",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":95,\n  \"reviewText\":\"very good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/reviews/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/reviews/5997d1b5554f61a91fc6be66",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":95,\n  \"reviewText\":\"very good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/reviews/{id} 403 - no permission to delete",
+							"request": {
+								"url": "{{URL}}/reviews/5997d381d49e61a964d6fbf8",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/reviews",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/reviews?",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"reviews"
+							],
+							"query": [
+								{
+									"key": "publishedOnStart",
+									"value": "2016-10-05",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "publishedOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								},
+								{
+									"key": "technologyProviderId",
+									"value": "59970b8954b8039d813e7023",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/reviews",
+					"request": {
+						"url": "{{URL}}/reviews",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/reviews/{id}",
+					"request": {
+						"url": "{{URL}}/reviews/5997d1b5554f61a91fc6be55",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/reviews/{id}",
+					"request": {
+						"url": "{{URL}}/reviews/5997d1b5554f61a91fc6be55",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":95,\n  \"reviewText\":\"very good!!\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/reviews/{id}",
+					"request": {
+						"url": "{{URL}}/reviews/5997d1b5554f61a91fc6be55",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/reviews",
+					"request": {
+						"url": "{{URL}}/count/reviews",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "technologyUserFile api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/technologyUserFiles 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/technologyUserFiles",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUserFiles 400 - input error",
+							"request": {
+								"url": "{{URL}}/technologyUserFiles",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5z\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUserFiles 403 - cannot use other's id",
+							"request": {
+								"url": "{{URL}}/technologyUserFiles",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"user\": \"5998f3e65121ca1bbaeca8ab\",\n  \"fileName\":\"a.zip\",\n  \"filePath\": \"/root/zz\",\n  \"keywords\":[\"fileq\",\"file2\"],\n  \"answeredOn\":\"2017-10-10\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUserFiles/{id} 403 - no permission to delete",
+							"request": {
+								"url": "{{URL}}/technologyUserFiles/5997da911880c4aa7ab2943b",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUserFiles/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/technologyUserFiles/5997d381d49e61a964d6fbf8",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/technologyUserFiles/{id}/upload 403",
+							"request": {
+								"url": "{{URL}}/technologyUserFiles/5997da911880c4aa7ab2943b/upload",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"description": "",
+											"type": "file",
+											"src": "swagger.yaml",
+											"value": ""
+										}
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/technologyUserFiles",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/technologyUserFiles?keywords=[\"file2\",\"fileq\"]&createdOnStart=2016-10-10&technologyUserId=5996ff8f2e859d9aed535ac5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"technologyUserFiles"
+							],
+							"query": [
+								{
+									"key": "keywords",
+									"value": "[\"file2\",\"fileq\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "technologyUserId",
+									"value": "5996ff8f2e859d9aed535ac5",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUserFiles",
+					"request": {
+						"url": "{{URL}}/technologyUserFiles",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"user\": \"5996ff8f2e859d9aed535ac5\",\n  \"fileName\":\"a.zip\",\n  \"filePath\": \"/root/zz\",\n  \"keywords\":[\"fileq\",\"file2\"],\n  \"answeredOn\":\"2017-10-10\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUserFiles/{id}",
+					"request": {
+						"url": "{{URL}}/technologyUserFiles/5997d9552992a6aa5ea5d438",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUserFiles/{id}/upload",
+					"request": {
+						"url": "{{URL}}/technologyUserFiles/5997d9552992a6aa5ea5d438/upload",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "",
+									"type": "file",
+									"src": "xx.jpg",
+									"value": ""
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/technologyUserFiles/{id}",
+					"request": {
+						"url": "{{URL}}/technologyUserFiles/5997d9552992a6aa5ea5d438",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/technologyUserFiles",
+					"request": {
+						"url": "{{URL}}/count/technologyUserFiles",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "notification api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/notifications 403 - only can fetch self notifications",
+							"request": {
+								"url": {
+									"raw": "{{URL}}/notifications?types=[\"newPostInFavouriteCategory\",\"newPostByFavouriteProvider\"]&statuses=[\"new\",\"read\"]&createdOnStart=2016-10-10&createdOnEnd=2018-10-10&recipientUserId=59998137ceb8e12559779120",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"notifications"
+									],
+									"query": [
+										{
+											"key": "types",
+											"value": "[\"newPostInFavouriteCategory\",\"newPostByFavouriteProvider\"]",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "statuses",
+											"value": "[\"new\",\"read\"]",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "createdOnStart",
+											"value": "2016-10-10",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "createdOnEnd",
+											"value": "2018-10-10",
+											"equals": true,
+											"description": ""
+										},
+										{
+											"key": "recipientUserId",
+											"value": "59998137ceb8e12559779120",
+											"equals": true,
+											"description": ""
+										}
+									],
+									"variable": []
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/notifications/{id} 403 - only can fetch self notifications",
+							"request": {
+								"url": "{{URL}}/notifications/59998137ceb8e12559779120",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/notifications/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/notifications/59998137ceb8e12559779130",
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/notifications/{id} 403 - cannot update others entity",
+							"request": {
+								"url": "{{URL}}/notifications/59998137ceb8e12559779120",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"type\": \"newPostInFavouriteCategory\",\n    \"entityId\": \"5997fe3bdaff7facf2f36626\",\n    \"status\": \"read\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/notifications/{id} 403 - cannot delete others",
+							"request": {
+								"url": "{{URL}}/notifications/59998137ceb8e12559779120",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/notifications",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/notifications?types=[\"newPostInFavouriteCategory\",\"newPostByFavouriteProvider\"]&statuses=[\"new\",\"read\"]&createdOnStart=2016-10-10&createdOnEnd=2018-10-10&recipientUserId=5996a3d9de3b0b927560d2e8",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "types",
+									"value": "[\"newPostInFavouriteCategory\",\"newPostByFavouriteProvider\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "statuses",
+									"value": "[\"new\",\"read\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "recipientUserId",
+									"value": "5996a3d9de3b0b927560d2e8",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/notifications/{id}",
+					"request": {
+						"url": "{{URL}}/notifications/59998137ceb8e12559779182",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/notifications/{id}",
+					"request": {
+						"url": "{{URL}}/notifications/59998137ceb8e12559779182",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"type\": \"newPostInFavouriteCategory\",\n    \"entityId\": \"5997fe3bdaff7facf2f36626\",\n    \"status\": \"read\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/notifications/{id}",
+					"request": {
+						"url": "{{URL}}/notifications/59998137ceb8e12559779182",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/notifications",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/count/notifications?recipientUserId=5996a3d9de3b0b927560d2e8",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"count",
+								"notifications"
+							],
+							"query": [
+								{
+									"key": "recipientUserId",
+									"value": "5996a3d9de3b0b927560d2e8",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favouriteCategory api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/favouriteCategories 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/favouriteCategories",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteCategories 400 - input error",
+							"request": {
+								"url": "{{URL}}/favouriteCategories",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5z\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteCategories 403 - cannot use other's id",
+							"request": {
+								"url": "{{URL}}/favouriteCategories",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"category\":\"59978ee5daefc4a05b6a5522\",\n\t\"user\":\"5998f3e65121ca1bbaeca8ab\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteCategories/{id} 403 - no permission to delete",
+							"request": {
+								"url": "{{URL}}/favouriteCategories/59981c28acbcd20646acb120",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteCategories/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/favouriteCategories/59981c28acbcd20646acb130",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteCategories/{id} 403 - cannot update other's",
+							"request": {
+								"url": "{{URL}}/favouriteCategories/59981c28acbcd20646acb120",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"category\": \"59978ee5daefc4a05b6a5522\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/favouriteCategories",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/favouriteCategories?createdOnStart=2016-10-10&createdOnEnd=2018-10-10&categoryId=59978ee5daefc4a05b6a5522&userId=5996ff8f2e859d9aed535ac5",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"favouriteCategories"
+							],
+							"query": [
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "categoryId",
+									"value": "59978ee5daefc4a05b6a5522",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "userId",
+									"value": "5996ff8f2e859d9aed535ac5",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteCategories",
+					"request": {
+						"url": "{{URL}}/favouriteCategories",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"category\":\"59978ee5daefc4a05b6a5522\",\n\t\"user\":\"5996ff8f2e859d9aed535ac5\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteCategories/{id}",
+					"request": {
+						"url": "{{URL}}/favouriteCategories/59981c28acbcd20646acb103",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteCategories/{id}",
+					"request": {
+						"url": "{{URL}}/favouriteCategories/59981c28acbcd20646acb103",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"category\": \"59978ee5daefc4a05b6a5522\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteCategories/{id}",
+					"request": {
+						"url": "{{URL}}/favouriteCategories/59981c28acbcd20646acb103",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/favouriteCategories",
+					"request": {
+						"url": "{{URL}}/count/favouriteCategories",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "informationRequest api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/informationRequests 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/informationRequests",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/informationRequests 400 - input error",
+							"request": {
+								"url": "{{URL}}/informationRequests",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5z\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/informationRequests 403 - cannot use other's id",
+							"request": {
+								"url": "{{URL}}/informationRequests",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"fromUser\":\"5998f3e65121ca1bbaeca8ab\",\n\t\"subject\": \"how to do someThing?\",\n\t\"requestText\": \"in your document ...\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/informationRequests/{id} 403 - no permission to delete",
+							"request": {
+								"url": "{{URL}}/informationRequests/5998ee369493351addfe8d81",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/informationRequests/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/informationRequests/59981c28acbcd20646acb130",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/informationRequests/{id} 403 - cannot update other's",
+							"request": {
+								"url": "{{URL}}/informationRequests/5998ee369493351addfe8d81",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"answer\": \"you can do that ..\",\n\t\"status\": \"answered\",\n\t\"answeredOn\": \"2017-10-10\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/informationRequests",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/informationRequests?statuses=[\"new\",\"answered\"]&fromUserId=5996ff8f2e859d9aed535ac5&createdOnStart=2016-10-10&createdOnEnd=2018-10-10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"informationRequests"
+							],
+							"query": [
+								{
+									"key": "statuses",
+									"value": "[\"new\",\"answered\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "fromUserId",
+									"value": "5996ff8f2e859d9aed535ac5",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/informationRequests",
+					"request": {
+						"url": "{{URL}}/informationRequests",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fromUser\":\"5996ff8f2e859d9aed535ac5\",\n\t\"subject\": \"how to do someThing?\",\n\t\"requestText\": \"in your document ...\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/informationRequests/{id}",
+					"request": {
+						"url": "{{URL}}/informationRequests/59985329c59f480d02c38e2f",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/informationRequests/{id}",
+					"request": {
+						"url": "{{URL}}/informationRequests/59985329c59f480d02c38e2f",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"answer\": \"you can do that ..\",\n\t\"status\": \"answered\",\n\t\"answeredOn\": \"2017-10-10\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/informationRequests/{id}",
+					"request": {
+						"url": "{{URL}}/informationRequests/59985329c59f480d02c38e2f",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/informationRequests",
+					"request": {
+						"url": "{{URL}}/count/informationRequests",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "favouriteTechnologyProviders api",
+			"description": "",
+			"item": [
+				{
+					"name": "error",
+					"description": "",
+					"item": [
+						{
+							"name": "{{URL}}/favouriteTechnologyProviders 401 - auth failed",
+							"request": {
+								"url": "{{URL}}/favouriteTechnologyProviders",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteTechnologyProviders 400 - input error",
+							"request": {
+								"url": "{{URL}}/favouriteTechnologyProviders",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"provider\": \"59970b8954b8039d813e7023\",\n  \"fromUser\": \"5996ff8f2e859d9aed535ac5z\",\n  \"score\":90,\n  \"reviewText\":\"good!!\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteTechnologyProviders 403 - cannot use other's id",
+							"request": {
+								"url": "{{URL}}/favouriteTechnologyProviders",
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"provider\":\"59970b8954b8039d813e7023\",\n\t\"user\":\"5998f3e65121ca1bbaeca8ab\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteTechnologyProviders/{id} 403 - no permission to delete",
+							"request": {
+								"url": "{{URL}}/favouriteTechnologyProviders/5998fb3dd85c2a1ce5a15050",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteTechnologyProviders/{id} 404 - not found",
+							"request": {
+								"url": "{{URL}}/favouriteTechnologyProviders/5998fb3dd85c2a1ce5a15060",
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "{{URL}}/favouriteTechnologyProviders/{id} 403 - cannot update other's",
+							"request": {
+								"url": "{{URL}}/favouriteTechnologyProviders/5998fb3dd85c2a1ce5a15050",
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{accessToken}}",
+										"description": ""
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"description": ""
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"provider\":\"59970b8954b8039d813e7023\",\n\t\"user\":\"5996ff8f2e859d9aed535ac5\"\n}"
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "{{URL}}/favouriteTechnologyProviders",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/favouriteTechnologyProviders?createdOnStart=2016-10-10&createdOnEnd=2018-10-10",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"favouriteTechnologyProviders"
+							],
+							"query": [
+								{
+									"key": "createdOnStart",
+									"value": "2016-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "createdOnEnd",
+									"value": "2018-10-10",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "technologyProviderId",
+									"value": "59970b9154b8039d813e7027",
+									"equals": true,
+									"description": "",
+									"disabled": true
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteTechnologyProviders",
+					"request": {
+						"url": "{{URL}}/favouriteTechnologyProviders",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"provider\":\"59970b8954b8039d813e7023\",\n\t\"user\":\"5996ff8f2e859d9aed535ac5\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteTechnologyProviders/{id}",
+					"request": {
+						"url": "{{URL}}/favouriteTechnologyProviders/5998d03e432750151fa26cd1",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteTechnologyProviders/{id}",
+					"request": {
+						"url": "{{URL}}/favouriteTechnologyProviders/5998d03e432750151fa26cd1",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"provider\": \"59970b9154b8039d813e7027\"\n}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/favouriteTechnologyProviders/{id}",
+					"request": {
+						"url": "{{URL}}/favouriteTechnologyProviders/5998d03e432750151fa26cd1",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/count/favouriteTechnologyProviders",
+					"request": {
+						"url": "{{URL}}/count/favouriteTechnologyProviders",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{accessToken}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lookup api",
+			"description": "",
+			"item": [
+				{
+					"name": "{{URL}}/faqItems",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/faqItems?offset=0&limit=20&types=[\"technologyUser\",\"technologyProvider\"]&keyword=how to",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"faqItems"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "types",
+									"value": "[\"technologyUser\",\"technologyProvider\"]",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "keyword",
+									"value": "how to",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/countries",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/countries?offset=0&limit=20",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"countries"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/categories",
+					"request": {
+						"url": {
+							"raw": "{{URL}}/categories?offset=0&limit=20",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"categories"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0",
+									"equals": true,
+									"description": ""
+								},
+								{
+									"key": "limit",
+									"value": "20",
+									"equals": true,
+									"description": ""
+								}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "{{URL}}/states",
+					"request": {
+						"url": "{{URL}}/states",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

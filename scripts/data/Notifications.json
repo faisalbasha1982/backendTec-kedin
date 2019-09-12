@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "59998137ceb8e12559779182",
+    "createdOn": "2017-08-20T12:31:51.779Z",
+    "recipientUserId": "5996a3d9de3b0b927560d2e8",
+    "sourceUserId": "59970b8954b8039d813e7023",
+    "type": "newPostInFavouriteCategory",
+    "entityId": "5998f3b0087af11b9cfda0f2",
+    "status": "new"
+  },
+  {
+    "_id": "59998137ceb8e12559779183",
+    "createdOn": "2017-08-20T12:31:51.780Z",
+    "recipientUserId": "5996a3d9de3b0b927560d2e8",
+    "sourceUserId": "59970b8954b8039d813e7023",
+    "type": "newPostByFavouriteProvider",
+    "entityId": "5998f3b0087af11b9cfda0f2",
+    "status": "new"
+  },
+  {
+    "_id": "59998137ceb8e12559779120",
+    "createdOn": "2017-08-20T12:31:51.780Z",
+    "recipientUserId": "5998f3e65121ca1bbaeca8ab",
+    "sourceUserId": "59970b8954b8039d813e7023",
+    "type": "newPostByFavouriteProvider",
+    "entityId": "5998f3b0087af11b9cfda0f2",
+    "status": "new"
+  }
+]

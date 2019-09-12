@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "5998de19fb8cd219258c4e34",
+    "type": "technologyUser",
+    "question": "02-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e40",
+    "type": "technologyUser",
+    "question": "03-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e41",
+    "type": "technologyUser",
+    "question": "04-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e42",
+    "type": "technologyUser",
+    "question": "05-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e35",
+    "type": "technologyProvider",
+    "question": "technologyProvider - 03-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e33",
+    "type": "technologyProvider",
+    "question": "technologyProvider - 01-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e36",
+    "type": "technologyProvider",
+    "question": "technologyProvider - 04-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e37",
+    "type": "technologyProvider",
+    "question": "technologyProvider - 05-how to do it ?",
+    "answer": "technologyProvider,technologyProvider,technologyProvider,technologyProvider,technologyProvider,you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e46",
+    "type": "technologyProvider",
+    "question": "technologyProvider - 06-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e47",
+    "type": "technologyProvider",
+    "question": "technologyProvider - zzz-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  },
+  {
+    "_id": "5998de19fb8cd219258c4e45",
+    "type": "technologyProvider",
+    "question": "technologyProvider - 07-how to do it ?",
+    "answer": "you can do that ....",
+    "__v": 0
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "name": "TECKEDIN_BACKEND",
+  "version": "1.0.0",
+  "description": "TECKEDIN_BACKEND REST API",
+  "main": "app.js",
+  "scripts": {
+    "pm2": "pm2 start app.js --name tecked-in-backend -i 1",
+    "pm2-reload": "pm2 reload tecked-in-backend",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "lint": "eslint  *.js **/*.js . --fix",
+    "testdata": "node scripts/importData.js"
+  },
+  "author": "TSCODER",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.2",
+    "co": "^4.6.0",
+    "common-errors": "^1.0.4",
+    "config": "^1.26.2",
+    "cors": "^2.8.4",
+    "excel4node": "^1.2.1",
+    "express": "^4.15.4",
+    "express-fileupload": "^0.1.4",
+    "express-jwt": "^5.3.0",
+    "express-session": "^1.15.5",
+    "get-parameter-names": "^0.3.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth20": "^1.0.0",
+    "http-status": "^1.0.1",
+    "joi": "^10.6.0",
+    "jsonwebtoken": "^7.4.3",
+    "lodash": "^4.17.4",
+    "moment-timezone": "^0.5.14",
+    "mongoose": "^4.11.7",
+    "mongoose-timestamp": "^0.6.0",
+    "nodemailer": "^4.0.1",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0"
+  },
+  "engines": {
+    "node": "8.2.x"
+  }
+}

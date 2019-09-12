@@ -1,0 +1,106 @@
+[
+  {
+    "_id": "5997d8ff014608aa57a6873c",
+    "createdOn": "2017-08-19T06:21:51.892Z",
+    "updatedOn": "2017-08-20T01:45:40.261Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "__v": 0,
+    "keywords": []
+  },
+  {
+    "_id": "5997d9262992a6aa5ea5d436",
+    "createdOn": "2017-08-19T06:22:30.112Z",
+    "updatedOn": "2017-08-20T01:45:40.262Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "__v": 0,
+    "keywords": []
+  },
+  {
+    "_id": "5997d9402992a6aa5ea5d437",
+    "createdOn": "2017-08-19T06:22:56.266Z",
+    "updatedOn": "2017-08-20T01:45:40.262Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "__v": 0,
+    "keywords": [
+      "fileq",
+      "file2"
+    ]
+  },
+  {
+    "_id": "5997d9552992a6aa5ea5d438",
+    "createdOn": "2017-08-19T06:23:17.075Z",
+    "updatedOn": "2017-08-20T01:45:40.262Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a-v2.zip",
+    "filePath": "/root/zz/v2",
+    "answeredOn": "2017-10-10T00:00:00.000Z",
+    "__v": 0,
+    "keywords": [
+      "fileq",
+      "file3",
+      "file4"
+    ]
+  },
+  {
+    "_id": "5997da1bbde6a8aa6fcb31aa",
+    "createdOn": "2017-08-19T06:26:35.787Z",
+    "updatedOn": "2017-08-20T01:45:40.262Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "answeredOn": "2017-10-10T00:00:00.000Z",
+    "__v": 0,
+    "keywords": [
+      "fileq",
+      "file2"
+    ]
+  },
+  {
+    "_id": "5997da681880c4aa7ab29439",
+    "createdOn": "2017-08-19T06:27:52.668Z",
+    "updatedOn": "2017-08-20T01:45:40.262Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "answeredOn": "2017-10-10T00:00:00.000Z",
+    "__v": 0,
+    "keywords": [
+      "fileq",
+      "file2"
+    ]
+  },
+  {
+    "_id": "5997da811880c4aa7ab2943a",
+    "createdOn": "2017-08-19T06:28:17.209Z",
+    "updatedOn": "2017-08-20T01:45:40.263Z",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "answeredOn": "2017-10-10T00:00:00.000Z",
+    "__v": 0,
+    "keywords": [
+      "fileq",
+      "file2"
+    ]
+  },
+  {
+    "_id": "5997da911880c4aa7ab2943b",
+    "createdOn": "2017-08-19T06:28:33.350Z",
+    "updatedOn": "2017-08-20T01:45:40.263Z",
+    "user": "5998f3e65121ca1bbaeca8ab",
+    "fileName": "a.zip",
+    "filePath": "/root/zz",
+    "answeredOn": "2017-10-10T00:00:00.000Z",
+    "__v": 0,
+    "keywords": [
+      "fileq",
+      "file2"
+    ]
+  }
+]

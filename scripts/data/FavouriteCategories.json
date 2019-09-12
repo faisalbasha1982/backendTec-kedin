@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "59981c28acbcd20646acb103",
+    "createdOn": "2017-08-19T11:08:24.111Z",
+    "updatedOn": "2017-08-20T01:45:40.233Z",
+    "category": "59978ee5daefc4a05b6a5522",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "__v": 0
+  },
+  {
+    "_id": "59981c28acbcd20646acb120",
+    "createdOn": "2017-08-19T11:08:24.111Z",
+    "updatedOn": "2017-08-20T01:45:40.233Z",
+    "category": "59978ee5daefc4a05b6a5522",
+    "user": "5998f3e65121ca1bbaeca8ab",
+    "__v": 0
+  }
+]

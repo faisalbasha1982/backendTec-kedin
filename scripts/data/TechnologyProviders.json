@@ -1,0 +1,68 @@
+[
+  {
+    "_id": "59970b8954b8039d813e7023",
+    "createdOn": "2017-08-18T15:45:13.461Z",
+    "updatedOn": "2017-08-20T01:45:40.213Z",
+    "name": "IBM",
+    "address": {
+      "street": "steert 02",
+      "locality": "locality 02",
+      "postalCode": "518000",
+      "state": "USA"
+    },
+    "contactInformation": {
+      "phone": "110-009-102",
+      "email": "email.updated@email.com",
+      "website": "http://www.baidu.com",
+      "_id": "59970b8954b8039d813e7024"
+    },
+    "logoPath": "provider-logos/provider-logo-1.png",
+    "userId": "5998d9be12ea6c1824b74304",
+    "description": "provider description from backend ,Lorem ipsum dolor sit amet, consectet lor adipiscing elit, sed do eiusmod tempo lor cididunt ut labore loret dolore magna aliqt enim ad minim veniam, quis nostr lou loreid exercitation.",
+    "__v": 0
+  },
+  {
+    "_id": "59970b9154b8039d813e7027",
+    "createdOn": "2017-08-18T15:45:21.528Z",
+    "updatedOn": "2017-08-20T01:45:40.214Z",
+    "name": "provider name",
+    "address": {
+      "street": "steert 02",
+      "locality": "locality 02",
+      "postalCode": "518000",
+      "state": "USA"
+    },
+    "contactInformation": {
+      "phone": "110-009-110",
+      "email": "email@email.com",
+      "website": "http://www.baidu.com",
+      "_id": "59970b9154b8039d813e7028"
+    },
+    "logoPath": "provider-logos/provider-logo-2.png",
+    "userId": "5998d9be12ea6c1824b74305",
+    "description": "provider description from backend ,Lorem ipsum dolor sit amet, consectet lor adipiscing elit, sed do eiusmod tempo lor cididunt ut labore loret dolore magna aliqt enim ad minim veniam, quis nostr lou loreid exercitation.",
+    "__v": 0
+  },
+  {
+    "_id": "59970b992cc8679d84f0aaa2",
+    "createdOn": "2017-08-18T15:45:29.184Z",
+    "updatedOn": "2017-08-20T01:45:40.216Z",
+    "name": "provider name",
+    "address": {
+      "street": "steert 02",
+      "locality": "locality 02",
+      "postalCode": "518000",
+      "state": "USA"
+    },
+    "contactInformation": {
+      "phone": "110-009-110",
+      "email": "email@email.com",
+      "website": "http://www.baidu.com",
+      "_id": "59970b992cc8679d84f0aaa3"
+    },
+    "logoPath": "provider-logos/provider-logo-3.png",
+    "userId": "5998d9be12ea6c1824b74306",
+    "description": "provider description from backend , Lorem ipsum dolor sit amet, consectet lor adipiscing elit, sed do eiusmod tempo lor cididunt ut labore loret dolore magna aliqt enim ad minim veniam, quis nostr lou loreid exercitation.",
+    "__v": 0
+  }
+]

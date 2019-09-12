@@ -1,0 +1,31 @@
+[
+  {
+    "_id": "5998efb2f8b15b1b2a874990",
+    "createdOn": "2017-08-20T02:10:58.074Z",
+    "updatedOn": "2017-08-20T02:16:46.454Z",
+    "post": "59978ee5daefc4a05b6a5523",
+    "user": "5996ff8f2e859d9aed535ac5",
+    "__v": 1,
+    "expirationOption": "fiveYears",
+    "status": "active",
+    "keywords": [
+      "key1",
+      "key2",
+      "key3"
+    ]
+  },
+  {
+    "_id": "5998fb03d85c2a1ce5a1504c",
+    "createdOn": "2017-08-20T02:59:15.644Z",
+    "updatedOn": "2017-08-20T02:59:15.644Z",
+    "post": "59978ee5daefc4a05b6a5523",
+    "user": "5998f3e65121ca1bbaeca8ab",
+    "__v": 0,
+    "expirationOption": "oneYear",
+    "status": "active",
+    "keywords": [
+      "key1",
+      "key2"
+    ]
+  }
+]

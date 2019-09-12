@@ -1,0 +1,68 @@
+[
+  {
+    "_id": "599792afc21458a0df3ca03f",
+    "name": "Enterprise Content Mgmt",
+    "iconPath": "icon-enterprise",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5522",
+    "name": "Data &AMP; Analytics",
+    "iconPath": "icon-analytics",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5523",
+    "name": "Cloud Computing",
+    "iconPath": "icon-cloud",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5524",
+    "name": "Artificial Intelligence",
+    "iconPath": "icon-iot",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5525",
+    "name": "Digital Risk &AMP; Security",
+    "iconPath": "icon-risk-security",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5526",
+    "name": "Mobility/BYOD",
+    "iconPath": "icon-mobility",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5527",
+    "name": "Network Technology",
+    "iconPath": "icon-network",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5528",
+    "name": "As-A-Service",
+    "iconPath": "icon-cloud",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5529",
+    "name": "Storage Technology",
+    "iconPath": "icon-storage",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5530",
+    "name": "Digital Services",
+    "iconPath": "icon-network",
+    "__v": 0
+  },
+  {
+    "_id": "59978ee5daefc4a05b6a5531",
+    "name": "Internet of Things",
+    "iconPath": "icon-iot",
+    "__v": 0
+  }
+]
