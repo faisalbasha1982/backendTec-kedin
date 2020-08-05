@@ -21,7 +21,7 @@
     "cors": "^2.8.4",
     "excel4node": "^1.2.1",
     "express": "^4.15.4",
-    "express-fileupload": "^0.1.4",
+    "express-fileupload": "^1.1.9",
     "express-jwt": "^5.3.0",
     "express-session": "^1.15.5",
     "get-parameter-names": "^0.3.0",
